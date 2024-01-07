@@ -1,21 +1,16 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../../../helper/db";
 import { Users } from "@/models/user";
-
 connectDB();
-
-
-export  function GET(){
-    return new NextResponse("get method")
-}
 
 
 export async function POST(request) {
     try {
-        const { name, email, password } = request.body;
+        const {name, email, password} = await request.json();
+
 
         if (!email || !password) {
-            return new NextResponse.json({
+            return  NextResponse.json({
                 success: false,
                 message: "Please provide both email and password.",
             }, { status: 400 });
@@ -36,7 +31,7 @@ export async function POST(request) {
             data: newUser
         });
 
-        return new NextResponse.json({
+        return  NextResponse.json({
             success: true,
             message: "User created successfully.",
             data: newUser
@@ -50,7 +45,7 @@ export async function POST(request) {
             message: "User creation failed.",
         });
 
-        return new NextResponse.json({
+        return  NextResponse.json({
             success: false,
             message: "User creation failed.",
         }, { status: 500 });
