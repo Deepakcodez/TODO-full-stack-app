@@ -1,6 +1,18 @@
 // Import necessary modules and models
 import { NextResponse } from "next/server";
 import { Tasks } from "@/models/task";
+import { connectDB } from "../../../helper/db";
+import { responseMessage } from "@/helper/responsemessge";
+
+connectDB();
+
+
+
+
+
+
+
+
 
 // Create task
 export async function POST(request) {
@@ -37,4 +49,20 @@ export async function POST(request) {
             { status: 500 }
         );
     }
+}
+
+
+
+// get all tasks
+
+export async function GET(request){
+      try {
+        const task =  await Tasks.find();
+
+       return responseMessage(true,"all tasks",task,200)
+        
+      } catch (error) {
+        console.log('>>>>>>>>>>>', error)
+     return   responseMessage(false,"internal error",null,500)
+      }
 }

@@ -50,6 +50,12 @@ export async function GET(request, { params }) {
     );
   }
 }
+
+
+
+
+
+// update user  
 export async function PUT(request, { params }) {
     const { userid } = params;
     const { name, password } = await request.json();
