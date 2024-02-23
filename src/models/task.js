@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
+import { Users } from "./user";
 const taskSchema = new Schema({
   title: {
     type: String,
@@ -23,8 +23,7 @@ const taskSchema = new Schema({
     default: "pending",
   },
   userId: {
-    type: Schema.Types.ObjectId,
-    // type : String,
+    type: mongoose.ObjectId,
     ref: "Users", 
     required: true,
   },

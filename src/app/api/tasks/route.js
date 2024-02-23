@@ -16,7 +16,7 @@ connectDB();
 
 // Create task
 export async function POST(request) {
-    const { title, desc, status } = await request.json();
+    const { title, desc, status  } = await request.json();
     
     try {
         // Create a new task
@@ -24,6 +24,7 @@ export async function POST(request) {
             title,
             desc,
             status,
+            
         });
 
         // Save the task to the database
